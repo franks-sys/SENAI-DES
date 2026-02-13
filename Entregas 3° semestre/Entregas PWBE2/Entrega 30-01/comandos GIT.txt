@@ -1,0 +1,10 @@
+//clonar repositório
+git clone https://github.com/franks-sys/SENAI-DES.git
+
+//atualizar repositório WEB
+git add. //Adiciona as alterações feitas
+git commit -m "comentario" //valida as alterações feitas
+git push //envia as alterações
+
+//Atualizar repositório local
+git pull
