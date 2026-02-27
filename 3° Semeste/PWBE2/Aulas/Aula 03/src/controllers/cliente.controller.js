@@ -10,7 +10,7 @@ const novoCliente = async (req, res) => {
         return res.status(400).send("Erro: Digite seu nome completo.");
     }
 
-    let cpfLimpo = String(CPF).replace(/[^0-9]/g, "");
+    let cpfLimpo = String(CPF).replace();
 
     if (cpfLimpo.length !== 11) {
         return res.status(400).send("Erro: O CPF deve ter exatamente 11 números.");

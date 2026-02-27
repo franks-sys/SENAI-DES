@@ -4,13 +4,14 @@ const express = require("express");
 const cors = require("cors");
 
 const app = express();
-const carroRoutes = require("./routes/carro.routes");
-const clienteRoutes = require("./routes/cliente.routes");
+const carroRoutes = require("./src/routes/carro.routes");
+const clienteRoutes = require("./src/routes/cliente.routes");
+
+app.use(express.json()); 
+app.use(cors());
 
 app.use(carroRoutes);
 app.use(clienteRoutes);
-app.use(express.json());
-app.use(cors());
 
 
 app.listen(process.env.PORT_APP, () => {

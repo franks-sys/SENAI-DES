@@ -10,7 +10,7 @@ const novoCarro = async (req, res) => {
         return res.status(400).send("Erro: Placa deve ter 7 caracteres e não pode ter espaços.");
     }
 
-    const anoTexto = String(ano); 
+    const anoTexto = String(ano);
     const caracteresDoAno = anoTexto.split("");
     const temLetra = caracteresDoAno.some(caractere => caractere < "0" || caractere > "9");
 
@@ -18,7 +18,7 @@ const novoCarro = async (req, res) => {
         return res.status(400).send("Erro: O ano deve ter exatamente 4 números.");
     }
 
-    const todosOsCarros = await prisma.carros.findMany(); 
+    const todosOsCarros = await prisma.carros.findMany();
     const placaJaExiste = todosOsCarros.some(carro => carro.placa.toUpperCase() === placa);
 
     if (placaJaExiste) {
