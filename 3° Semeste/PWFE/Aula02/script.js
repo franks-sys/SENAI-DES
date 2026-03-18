@@ -1,31 +1,78 @@
-const modalCli = document.getElementById("#modalCli")
+let clientes = JSON.parse(localStorage.getItem("clientes")) || [];
 
-var clientes
-
+document.addEventListener("DOMContentLoaded",renderizarTabela);
 
 function abrirModal(){
-    modalCli.style.display="block";
+    document.getElementById("modal").style.display = "block";
 }
 
 function fecharModal(){
-    modalCli.style.display="none";
+    document.getElementById("modal").style.display = "none";
+    limparCampos();
 }
 
-const formCLi = document.querySelector("#formCli");
-formCLi.addEventListener("submit", e => {
-    e.preventDefault();
-    const obj = {
+function salvarCliente() {
+    const cpf = document.getElementById("cpf").value.trim();
+    const nome = document.getElementById("nome").value.trim();
+    const sobrenome = document.getElementById("sobrenome").value.trim();
+    const nascimento = document.getElementById("nascimento").value;
 
-        cpf : formCLi.cpf.value,
-        nome: formCLi.nome.value,
-        sobrenome: formCLi.sobrenome.value,
-        nascimento: formCLi.nascimento.vallue 
+    if(!cpf || !nome) {
+        alert("CPF e Nome são obrigatórios!");
+        return;
+    }
+    const existe = clientes.find
+    (cliente =>cliente.cpf === cpf);
+
+    if (existe) {
+        alert("CPF já cadastrado!");
+        return;
     }
 
-    clientes.push(obj);
+    const novoCliente = {
+        id: Date.now(),
+        cpf,
+        nome,
+        sobrenome,
+        nascimento
+    };
+    clientes.push(novoCliente);
+    atualizarLocalStorage();
+    renderizarTabela();
+    fecharModal();
+}
 
-})
+function renderizarTabela() {
+    const tabela = document.getElementById("dados");
+    tabela.innerHTML = "";
 
-function renderizarTabela(){
-    const corpo = document
+    clientes.forEach(cliente =>{
+        tabela.innerHTML += `
+        <tr>
+            <td>${cliente.cpf}</td>
+            <td>${cliente.nome}</td>
+            <td>${cliente.sobrenome}</td>
+            <td>${cliente.nascimento}</td>
+            <td>
+            <button onclick="excluirCliente(${cliente.id})">Excluir</button>
+            </td>
+            </tr>
+            `;
+    });
+}
+function excluirCliente(id){
+    if(!confirm("Deseja realmente excluir?")) return;
+
+    clientes = clientes.filter(cliente => cliente.id !== id)
+    atualizarLocalStorage();
+    renderizarTabela();
+}
+function atualizarLocalStorage(){
+    localStorage.setItem("clientes",JSON.stringify(clientes));
+}
+function limparCampos(){
+    document.getElementById("cpf").value = "";
+    document.getElementById("nome").value = "";
+    document.getElementById("sobrenome").value = "";
+    document.getElementById("nascimento").value = "";
 }
