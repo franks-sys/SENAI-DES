@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EventMaker - Cadastro de Eventos</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>EventMaker - Cadastro de Eventos</h1>
+        <button onclick="abrirModal()">+ Novo Evento</button>
+    </header>
+    <main>
+        <table>
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Descrição</th>
+                    <th>Local</th>
+                    <th>Data</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody id="dados"></tbody>
+        </table>
+    </main>
+
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <h2>Novo Evento</h2>
+            <input type="text" id="nome" placeholder="Nome do Evento">
+            <input type="text" id="descricao" placeholder="Descrição do Evento">
+            <input type="date" id="data">
+            <input type="text" id="local" placeholder="Local do Evento">
+            <div class="modal-buttons">
+                <button onclick="salvarCliente()">Salvar</button>
+                <button onclick="fecharModal()">Cancelar</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

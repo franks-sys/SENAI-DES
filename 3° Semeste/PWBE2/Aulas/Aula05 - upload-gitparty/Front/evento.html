@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalhes do Evento</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="evento.css">
+</head>
+<body>
+    <header>
+        <h1>EventMaker - Detalhes do Evento</h1>
+        <button onclick="window.location.href='index.html'">← Voltar</button>
+    </header>
+
+    <main class="detalhe-main">
+
+        <section class="detalhe-card">
+            <h2 id="detalhe-nome">—</h2>
+            <div class="detalhe-grid">
+                <div class="detalhe-item">
+                    <span class="detalhe-label">Descrição</span>
+                    <span id="detalhe-descricao" class="detalhe-valor">—</span>
+                </div>
+                <div class="detalhe-item">
+                    <span class="detalhe-label">Local</span>
+                    <span id="detalhe-local" class="detalhe-valor">—</span>
+                </div>
+                <div class="detalhe-item">
+                    <span class="detalhe-label">Data</span>
+                    <span id="detalhe-data" class="detalhe-valor">—</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="galeria-section">
+            <div class="galeria-header">
+                <h3>Galeria de Imagens</h3>
+                <button onclick="abrirModalImagem()">+ Adicionar Imagem</button>
+            </div>
+
+            <div id="galeria" class="galeria-grid">
+                <p id="galeria-vazia" class="galeria-vazia">Nenhuma imagem adicionada ainda.</p>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Modal de Adicionar Imagem -->
+    <div id="modal-imagem" class="modal">
+        <div class="modal-content">
+            <h2>Adicionar Imagem</h2>
+            <input type="text" id="url-imagem" placeholder="Cole a URL da imagem aqui">
+            <div class="modal-buttons">
+                <button onclick="adicionarImagem()">Adicionar</button>
+                <button onclick="fecharModalImagem()">Cancelar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de visualização ampliada -->
+    <div id="modal-visualizar" class="modal" onclick="fecharVisualizacao()">
+        <div class="modal-visualizar-content" onclick="event.stopPropagation()">
+            <button class="btn-fechar-visual" onclick="fecharVisualizacao()">✕</button>
+            <img id="imagem-ampliada" src="" alt="Imagem ampliada">
+        </div>
+    </div>
+
+    <script src="evento.js"></script>
+</body>
+</html>
